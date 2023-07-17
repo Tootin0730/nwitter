@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { dbService } from "fbase";
-
 const Nweet = ({ nweetObj, isOwner }) => {
   const [editing, setEditing] = useState(false);
   const [newNweet, setNewNweet] = useState(nweetObj.text);
@@ -43,6 +42,9 @@ const Nweet = ({ nweetObj, isOwner }) => {
       ) : (
         <>
           <h4>{nweetObj.text}</h4>
+          {nweetObj.attachmentUrl && (
+            <img src={nweetObj.attachmentUrl} width="50px" height="50px" />
+          )}
           {isOwner && (
             <>
               <button onClick={onDeleteClick}>Delete Nweet</button>
@@ -54,5 +56,4 @@ const Nweet = ({ nweetObj, isOwner }) => {
     </div>
   );
 };
-
 export default Nweet;
